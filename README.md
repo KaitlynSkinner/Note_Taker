@@ -36,8 +36,8 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
   ## Usage 
   This application uses Exxpress framework to establish routes and HTTP requests. The back end of this application listens for a request from the user/client and responds accordingly whether the note is being written/accepted, saved, or deleted. Please view the deployed application below:
   [![Watch the video](https://img.youtube.com/vi//0.jpg)](https://www.youtube.com/watch?v=)
-  ![Deployed Application](https://github.com/KaitlynSkinner/Note_Taker/blob/708bdeba5c5d73c03f55c8152e83fc59b11e340a/public/assets/images/localhost_3000_notes.png?raw=true)
   ![Deployed Application](https://github.com/KaitlynSkinner/Note_Taker/blob/708bdeba5c5d73c03f55c8152e83fc59b11e340a/public/assets/images/_Users_kaitlynskinner_Desktop_School_Challenges_Note_Taker_public_index.html.png?raw=true)
+  ![Deployed Application](https://github.com/KaitlynSkinner/Note_Taker/blob/708bdeba5c5d73c03f55c8152e83fc59b11e340a/public/assets/images/localhost_3000_notes.png?raw=true)
 
   ## Deployed Heroku link
   https://mysterious-island-71500.herokuapp.com 

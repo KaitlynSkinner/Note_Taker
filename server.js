@@ -32,11 +32,6 @@ app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
-// GET method route for index.html
-app.get('/*/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-});
-
 // GET request for /api/notes - server requesting clinet to accept data
 app.get('/api/notes', (req, res) => {
     fs.readFile('db/db.json', 'utf8', function(err, data) {
@@ -74,7 +69,7 @@ app.post('/api/notes', (req, res) => {
             // Add a new note
             notesArr.push(newNote);
 
-            // Write updates notes back to the file
+            // Write updated notes back to the file
             fs.writeFile(
                 './db/db.json',
                 JSON.stringify(notesArr, null, 4),
@@ -92,23 +87,33 @@ app.post('/api/notes', (req, res) => {
         };
 
         console.log(response);
-        res.send(response);
+        res.json(response);
     } else {
         res.json('Error in posting note');
     }
 });
 
 //BONUS
-// app.delete("/api/notes/:id", (req, res) => {
-//     should receive a query parameter containing the id of a note to delete. 
-//     actions.remove(req.params.id);
-//     return res.send();
+app.delete("/api/notes/:id", (req, res) => {
+    // Obtain exisiting notes
+   const note = notesArr.find(i => i.id === req.params.id);
 
-//     In order to delete a note you'll need to:
-//     * read all notes from the db.json file, 
-//     * remove the note with the given id property, 
-//     * and then rewrite the notes to the db.json file.
-// });
+   if (!note) return res.send(" note");
+
+   const index = notesArr.indexOf(note);
+   notesArr.splice(index, 1);
+    
+   // Write updates notes back to the file
+    fs.writeFile("db/db.json", JSON.stringify(notes), function (err) {
+       console.log(err,data);
+       res.send(true);
+    });
+});
+
+// GET method route for index.html
+app.get('/*/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);

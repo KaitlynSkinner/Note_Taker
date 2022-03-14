@@ -11,7 +11,9 @@ const PORT = process.env.PROCESS || 3000;
 // Initialize app variable by setting it to the value of express()
 const app = express();
 
-//const { title } = require('process');
+// Heroku Website
+// https://mysterious-island-71500.herokuapp.com
+
 // Require the JSON file and assign it to a variable called `dataBase`
 //const dataBase = require('./db/db.json');
 
@@ -95,16 +97,17 @@ app.post('/api/notes', (req, res) => {
 
 //BONUS
 app.delete("/api/notes/:id", (req, res) => {
-    // Obtain exisiting notes
-   const note = notesArr.find(i => i.id === req.params.id);
+    // return the first element in the notes array
+   const note = notesArr.find(i => i.review_id === req.params.review_id);
 
-   if (!note) return res.send(" note");
-
-   const index = notesArr.indexOf(note);
+   if (!note) {
+   return res.send("Unable to find note.");
+   }
+   let index = notesArr.indexOf(note);
    notesArr.splice(index, 1);
     
    // Write updates notes back to the file
-    fs.writeFile("db/db.json", JSON.stringify(notes), function (err) {
+    fs.writeFile("db/db.json", JSON.stringify(notesArr), function (err) {
        console.log(err,data);
        res.send(true);
     });
